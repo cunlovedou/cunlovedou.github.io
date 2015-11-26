@@ -51,19 +51,19 @@
 
 
 
-<meta name="description" content="/root/php-5.2.12/ext/iconv/iconv.c:2491: undefined reference to libiconv_open&amp;#39;
-ext/xmlrpc/libxmlrpc/.libs/encodings.o: In functionconvert’:/root/php-5.2.12/ext/xmlrpc/libxmlrpc/encodings.c:73: und">
+<meta name="description" content="iptables里面仅仅开放了80、21等常用端口，这样就导致了vsFTPd在被动模式时无法使用随机端口，从而造成了客户端连接FTP时无法列出目录这样的问题。解决方式很简单，给vsFTPd增加随机端口的范围，然后把这个端口范围添加到iptables。具体做法如下：
+1、修改/etc/vsftpd/vsftpd.conf的配置文件，在文件末端添加：pasv_max_port=6666pasv_min">
 <meta property="og:type" content="article">
-<meta property="og:title" content="php编译出错处理">
-<meta property="og:url" content="http://yoursite.com/2015/11/26/2015-11-26-2/index.html">
+<meta property="og:title" content="vsftp无法获取目录列表">
+<meta property="og:url" content="http://yoursite.com/2015/11/26/2015-11-26-1/index.html">
 <meta property="og:site_name" content="刘永存的博客">
-<meta property="og:description" content="/root/php-5.2.12/ext/iconv/iconv.c:2491: undefined reference to libiconv_open&amp;#39;
-ext/xmlrpc/libxmlrpc/.libs/encodings.o: In functionconvert’:/root/php-5.2.12/ext/xmlrpc/libxmlrpc/encodings.c:73: und">
-<meta property="og:updated_time" content="2015-11-26T08:05:26.174Z">
+<meta property="og:description" content="iptables里面仅仅开放了80、21等常用端口，这样就导致了vsFTPd在被动模式时无法使用随机端口，从而造成了客户端连接FTP时无法列出目录这样的问题。解决方式很简单，给vsFTPd增加随机端口的范围，然后把这个端口范围添加到iptables。具体做法如下：
+1、修改/etc/vsftpd/vsftpd.conf的配置文件，在文件末端添加：pasv_max_port=6666pasv_min">
+<meta property="og:updated_time" content="2015-11-26T07:48:36.174Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="php编译出错处理">
-<meta name="twitter:description" content="/root/php-5.2.12/ext/iconv/iconv.c:2491: undefined reference to libiconv_open&amp;#39;
-ext/xmlrpc/libxmlrpc/.libs/encodings.o: In functionconvert’:/root/php-5.2.12/ext/xmlrpc/libxmlrpc/encodings.c:73: und">
+<meta name="twitter:title" content="vsftp无法获取目录列表">
+<meta name="twitter:description" content="iptables里面仅仅开放了80、21等常用端口，这样就导致了vsFTPd在被动模式时无法使用随机端口，从而造成了客户端连接FTP时无法列出目录这样的问题。解决方式很简单，给vsFTPd增加随机端口的范围，然后把这个端口范围添加到iptables。具体做法如下：
+1、修改/etc/vsftpd/vsftpd.conf的配置文件，在文件末端添加：pasv_max_port=6666pasv_min">
 
 
 
@@ -75,7 +75,7 @@ ext/xmlrpc/libxmlrpc/.libs/encodings.o: In functionconvert’:/root/php-5.2.12/e
   };
 </script>
 
-  <title> php编译出错处理 | 刘永存的博客 </title>
+  <title> vsftp无法获取目录列表 | 刘永存的博客 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -205,7 +205,7 @@ ext/xmlrpc/libxmlrpc/.libs/encodings.o: In functionconvert’:/root/php-5.2.12/e
             
             
               
-                php编译出错处理
+                vsftp无法获取目录列表
               
             
           </h1>
@@ -214,7 +214,7 @@ ext/xmlrpc/libxmlrpc/.libs/encodings.o: In functionconvert’:/root/php-5.2.12/e
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-11-26T16:05:26+08:00" content="2015-11-26">
+            <time itemprop="dateCreated" datetime="2015-11-26T16:04:13+08:00" content="2015-11-26">
               2015-11-26
             </time>
           </span>
@@ -238,11 +238,11 @@ ext/xmlrpc/libxmlrpc/.libs/encodings.o: In functionconvert’:/root/php-5.2.12/e
       
 
       
-        <span itemprop="articleBody"><p>/root/php-5.2.12/ext/iconv/iconv.c:2491: undefined reference to <code>libiconv_open&#39;
-ext/xmlrpc/libxmlrpc/.libs/encodings.o: In function</code>convert’:<br>/root/php-5.2.12/ext/xmlrpc/libxmlrpc/encodings.c:73: undefined reference to <code>libiconv_open&#39;
-/root/php-5.2.12/ext/xmlrpc/libxmlrpc/encodings.c:81: undefined reference to</code>libiconv’<br>/root/php-5.2.12/ext/xmlrpc/libxmlrpc/encodings.c:101: undefined reference to `libiconv_close’<br>collect2: ld returned 1 exit status<br>make: <em>*</em> [sapi/cli/php] ?.. 1</p>
-<p>处理方法：<br>./configure …………</p>
-<p>vi Makefile<br>找到下面这行：<br>EXTRA_LIBS = -lcrypt …<br>在最后添加-liconv<br>保存后make通过；make install通过。</p>
+        <span itemprop="articleBody"><p>iptables里面仅仅开放了80、21等常用端口，这样就导致了vsFTPd在被动模式时无法使用随机端口，从而造成了客户端连接FTP时无法列出目录这样的问题。解决方式很简单，给vsFTPd增加随机端口的范围，然后把这个端口范围添加到iptables。<br>具体做法如下：</p>
+<p>1、修改/etc/vsftpd/vsftpd.conf的配置文件，在文件末端添加：<br>pasv_max_port=6666<br>pasv_min_port=5555<br>/etc/init.d/vsftpd restart<br>2、添加一条防火墙规则<br>/etc/init.d/iptables stop<br>iptables -I INPUT -p tcp –dport 5555:6666 -j ACCEPT<br>/etc/init.d/iptables save<br>/etc/init.d/iptables start<br>最后再次进行ftp连接，成功。</p>
+<p>第二种方法：<br>添加附加模块，链接追踪模块<br>iptables -A INPUT -m state –state RELATED,ESTABLISHED -j ACCEPT<br>modprobe ip_conntrack_ftp //临时加载</p>
+<p>/etc/sysconfig/iptables-config//这个是永久的<br>IPTABLES_MODULES=”ip_conntrack_netbios_ns ip_conntrack_ftp”</p>
+<p>service iptables restart</p>
 </span>
       
     </div>
@@ -254,13 +254,13 @@ ext/xmlrpc/libxmlrpc/.libs/encodings.o: In function</code>convert’:<br>/root/p
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2015/11/26/2015-11-26-1/" rel="next" title="vsftp无法获取目录列表">
-                <i class="fa fa-chevron-left"></i> vsftp无法获取目录列表
-              </a>
-            
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2015/11/26/2015-11-26-2/" rel="prev" title="php编译出错处理">
+                php编译出错处理 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
