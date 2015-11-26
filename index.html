@@ -220,7 +220,7 @@
               
                 
                 <a class="post-title-link" href="/2015/11/26/2015-11-26-2/" itemprop="url">
-                  vsftp�޷���ȡĿ¼�б�
+                  vsftp无法获取目录列表
                 </a>
               
             
@@ -230,7 +230,7 @@
         <div class="post-meta">
           <span class="post-time">
             发表于
-            <time itemprop="dateCreated" datetime="2015-11-26T15:44:52+08:00" content="2015-11-26">
+            <time itemprop="dateCreated" datetime="2015-11-26T15:48:36+08:00" content="2015-11-26">
               2015-11-26
             </time>
           </span>
@@ -257,10 +257,10 @@
         
           <span itemprop="articleBody">
             
-              <p>iptables��������������80��21�ȳ��ö˿ڣ������͵�����vsFTPd�ڱ���ģʽʱ�޷�ʹ�������˿ڣ��Ӷ������˿ͻ�������FTPʱ�޷��г�Ŀ¼���������⡣������ʽ�ܼ򵥣���vsFTPd���������˿ڵķ�Χ��Ȼ���������˿ڷ�Χ���ӵ�iptables��<br>�����������£�</p>
-<p>1���޸�/etc/vsftpd/vsftpd.conf�������ļ������ļ�ĩ�����ӣ�<br>pasv_max_port=6666<br>pasv_min_port=5555<br>/etc/init.d/vsftpd restart<br>2������һ������ǽ����<br>/etc/init.d/iptables stop<br>iptables -I INPUT -p tcp –dport 5555:6666 -j ACCEPT<br>/etc/init.d/iptables save<br>/etc/init.d/iptables start<br>�����ٴν���ftp���ӣ��ɹ���</p>
-<p>�ڶ��ַ�����<br>���Ӹ���ģ�飬����׷��ģ��<br>iptables -A INPUT -m state –state RELATED,ESTABLISHED -j ACCEPT<br>modprobe ip_conntrack_ftp //��ʱ����</p>
-<p>/etc/sysconfig/iptables-config//���������õ�<br>IPTABLES_MODULES=”ip_conntrack_netbios_ns ip_conntrack_ftp”</p>
+              <p>iptables里面仅仅开放了80、21等常用端口，这样就导致了vsFTPd在被动模式时无法使用随机端口，从而造成了客户端连接FTP时无法列出目录这样的问题。解决方式很简单，给vsFTPd增加随机端口的范围，然后把这个端口范围添加到iptables。<br>具体做法如下：</p>
+<p>1、修改/etc/vsftpd/vsftpd.conf的配置文件，在文件末端添加：<br>pasv_max_port=6666<br>pasv_min_port=5555<br>/etc/init.d/vsftpd restart<br>2、添加一条防火墙规则<br>/etc/init.d/iptables stop<br>iptables -I INPUT -p tcp –dport 5555:6666 -j ACCEPT<br>/etc/init.d/iptables save<br>/etc/init.d/iptables start<br>最后再次进行ftp连接，成功。</p>
+<p>第二种方法：<br>添加附加模块，链接追踪模块<br>iptables -A INPUT -m state –state RELATED,ESTABLISHED -j ACCEPT<br>modprobe ip_conntrack_ftp //临时加载</p>
+<p>/etc/sysconfig/iptables-config//这个是永久的<br>IPTABLES_MODULES=”ip_conntrack_netbios_ns ip_conntrack_ftp”</p>
 <p>service iptables restart</p>
 
             
@@ -325,7 +325,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">2</span>
+              <span class="site-state-item-count">1</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
